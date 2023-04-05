@@ -1,0 +1,11 @@
+micronaut:
+  application:
+    name: aihioBot
+netty:
+  default:
+    allocator:
+      max-order: 3
+bot:
+  name: ${BOT_NAME}
+  token: ${BOT_TOKEN}
+
