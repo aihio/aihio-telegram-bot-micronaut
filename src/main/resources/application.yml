@@ -1,6 +1,8 @@
 micronaut:
   application:
     name: aihioBot
+  server:
+    port: ${PORT}
 netty:
   default:
     allocator:
