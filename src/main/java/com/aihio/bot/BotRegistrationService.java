@@ -26,7 +26,7 @@ public class BotRegistrationService implements ApplicationEventListener<ServiceR
     @Override
     public void onApplicationEvent(ServiceReadyEvent event) {
         try {
-            logger.info("Registering bot: {}", botName);
+            logger.info("Registering webhook bot");
             var telegramBotsApi = new TelegramBotsApi(DefaultBotSession.class);
 
             telegramBotsApi.registerBot(new WebHookBot(botToken, botName, botPath),
