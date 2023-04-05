@@ -9,7 +9,7 @@ import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 
 public class SimpleBot extends TelegramLongPollingBot {
 
-    private static final Logger logger = LoggerFactory.getLogger(BotRegistrationService.class.getName());
+    private static final Logger logger = LoggerFactory.getLogger(SimpleBot.class.getName());
     private final String botUsername;
 
     public SimpleBot(String botUsername, String botToken) {

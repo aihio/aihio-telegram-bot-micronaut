@@ -8,4 +8,4 @@ netty:
 bot:
   name: ${BOT_NAME}
   token: ${BOT_TOKEN}
-
+  path: ${BOT_PATH}
