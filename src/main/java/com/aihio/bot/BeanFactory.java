@@ -29,7 +29,7 @@ public class BeanFactory {
     @Bean
     public WebHookBot springWebhookBot(SetWebhook setWebhook) {
         logger.info("Registering webhook bot");
-        var bot = new WebHookBot(botToken, botName, botPath);
+        var bot = new WebHookBot(botToken, botName, "/");
         try {
             var telegramBotsApi = new TelegramBotsApi(DefaultBotSession.class);
             bot.setWebhook(setWebhook);
