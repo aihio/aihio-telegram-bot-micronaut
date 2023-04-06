@@ -1,11 +1,12 @@
-package com.aihio.bot;
+package com.aihio.bot.controller;
 
+import com.aihio.bot.bots.WebHookBot;
 import io.micronaut.http.MediaType;
 import io.micronaut.http.annotation.*;
 import org.telegram.telegrambots.meta.api.methods.BotApiMethod;
 import org.telegram.telegrambots.meta.api.objects.Update;
 
-@Controller("/")
+@Controller
 public class BotController {
 
     private final WebHookBot webHookBot;
@@ -20,7 +21,7 @@ public class BotController {
         return "AihioBot is up!";
     }
 
-    @Post
+    @Post("callback")
     public BotApiMethod<?> onUpdateReceived(@Body Update update){
         return webHookBot.onWebhookUpdateReceived(update);
     }

@@ -1,17 +1,17 @@
-package com.aihio.bot;
+package com.aihio.bot.factory;
 
+import com.aihio.bot.bots.WebHookBot;
 import io.micronaut.context.annotation.Bean;
 import io.micronaut.context.annotation.Factory;
 import io.micronaut.context.annotation.Property;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.telegram.telegrambots.meta.TelegramBotsApi;
 import org.telegram.telegrambots.meta.api.methods.updates.SetWebhook;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
-import org.telegram.telegrambots.updatesreceivers.DefaultBotSession;
 
 @Factory
 public class BeanFactory {
+
     private static final Logger logger = LoggerFactory.getLogger(BeanFactory.class.getName());
 
     @Property(name = "bot.name")
@@ -27,15 +27,14 @@ public class BeanFactory {
     }
 
     @Bean
-    public WebHookBot springWebhookBot(SetWebhook setWebhook) {
-        logger.info("Registering webhook bot");
+    public WebHookBot webHookBot(SetWebhook setWebhook) {
         var bot = new WebHookBot(botToken, botName, "/");
         try {
-            var telegramBotsApi = new TelegramBotsApi(DefaultBotSession.class);
+            logger.debug("Initializing WebHookBot...");
             bot.setWebhook(setWebhook);
-            telegramBotsApi.registerBot(bot,setWebhook);
         } catch (TelegramApiException e) {
-            logger.error("Error registering bot", e);
+            logger.error("Failed to initialize WebHookBot!", e);
+            throw new RuntimeException(e);
         }
         return bot;
     }
